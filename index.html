@@ -272,12 +272,33 @@
             visibility: hidden;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             text-align: center;
+            width: 90%;
+            max-width: 360px;
         }
 
         .toast.show {
             opacity: 1;
             visibility: visible;
             transform: translate(-50%, -50%) scale(1);
+        }
+
+        .toast-close {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-muted);
+            border-radius: 10px;
+            padding: 12px 32px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .toast-close:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--text-light);
         }
 
         .toast-icon {
@@ -351,8 +372,17 @@
             }
 
             .toast {
-                width: 90%;
-                padding: 24px;
+                width: calc(100% - 40px);
+                padding: 24px 20px;
+                max-width: none;
+            }
+
+            .toast h3 {
+                font-size: 1.2rem;
+            }
+
+            .toast p {
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -409,6 +439,7 @@
         </div>
         <h3>¡Copiado exitosamente!</h3>
         <p>Por favor, pegue el alias<br>en Mercado Pago</p>
+        <button class="toast-close" onclick="hideToast()">Cerrar</button>
     </div>
 
     <script>
@@ -431,7 +462,6 @@
         function showToast() {
             document.getElementById('overlay').classList.add('show');
             document.getElementById('toast').classList.add('show');
-            setTimeout(hideToast, 3000);
         }
 
         function hideToast() {
