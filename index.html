@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Información de Pago</title>
+    <title>Alias de Pago</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,439 +14,106 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #00bcff;
-            --primary-dark: #0090c9;
-            --accent: #ffe156;
-            --bg-dark: #0a1628;
-            --bg-card: #132238;
-            --text-light: #f0f4f8;
-            --text-muted: #8fa3bf;
-        }
-
         body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--bg-dark);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Animated background */
-        body::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(0, 188, 255, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 20%, rgba(255, 225, 86, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(0, 144, 201, 0.08) 0%, transparent 50%);
-            animation: bgPulse 8s ease-in-out infinite alternate;
-            z-index: 0;
-        }
-
-        @keyframes bgPulse {
-            0% { transform: scale(1) rotate(0deg); }
-            100% { transform: scale(1.1) rotate(5deg); }
-        }
-
-        /* Grid pattern overlay */
-        body::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(0, 188, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 188, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: 0;
         }
 
         .container {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            max-width: 480px;
-            animation: slideUp 0.6s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .card {
-            background: var(--bg-card);
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(0, 188, 255, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-        }
-
-        .header {
             text-align: center;
-            margin-bottom: 36px;
+            width: 100%;
+            max-width: 400px;
         }
 
-        .logo {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            box-shadow: 0 8px 24px rgba(0, 188, 255, 0.3);
-        }
-
-        .logo svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-
-        .header h1 {
-            color: var(--text-light);
-            font-size: 1.75rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .info-group {
-            margin-bottom: 24px;
-        }
-
-        .info-label {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 500;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .info-value {
-            background: rgba(0, 188, 255, 0.08);
-            border: 1px solid rgba(0, 188, 255, 0.2);
-            border-radius: 12px;
-            padding: 16px 20px;
-            color: var(--text-light);
-            font-size: 1.15rem;
-            font-weight: 500;
-        }
-
-        .alias-container {
-            margin-top: 32px;
-        }
-
-        .alias-box {
-            background: linear-gradient(135deg, rgba(0, 188, 255, 0.12), rgba(255, 225, 86, 0.08));
-            border: 2px solid var(--primary);
-            border-radius: 16px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        .alias-text {
+        .alias {
             font-family: 'Space Mono', monospace;
-            color: var(--accent);
-            font-size: 1.3rem;
+            font-size: 2rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
+            color: white;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 24px 32px;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .copy-btn {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
+            background: white;
+            color: #764ba2;
             border: none;
-            border-radius: 12px;
-            padding: 14px 28px;
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
+            border-radius: 50px;
+            padding: 20px 48px;
+            font-size: 1.2rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-            box-shadow: 0 4px 16px rgba(0, 188, 255, 0.3);
+            gap: 12px;
+            width: 100%;
+            justify-content: center;
         }
 
         .copy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 188, 255, 0.4);
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
         }
 
         .copy-btn:active {
-            transform: translateY(0);
+            transform: scale(0.98);
         }
 
         .copy-btn svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
+            width: 24px;
+            height: 24px;
         }
 
-        .footer {
-            text-align: center;
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        .copy-btn.copied {
+            background: #4ade80;
+            color: white;
         }
 
-        .footer p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        .mercado-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(0, 188, 255, 0.1);
-            padding: 8px 16px;
-            border-radius: 20px;
-            margin-top: 12px;
-        }
-
-        .mercado-badge span {
-            color: var(--primary);
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        /* Toast notification */
-        .toast {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            background: var(--bg-card);
-            border: 2px solid var(--accent);
-            border-radius: 20px;
-            padding: 32px 48px;
-            box-shadow: 
-                0 25px 80px rgba(0, 0, 0, 0.6),
-                0 0 60px rgba(255, 225, 86, 0.2);
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            text-align: center;
-            width: 90%;
-            max-width: 360px;
-        }
-
-        .toast.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .toast-close {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text-muted);
-            border-radius: 10px;
-            padding: 12px 32px;
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.2s ease;
-        }
-
-        .toast-close:hover {
-            background: rgba(255, 255, 255, 0.15);
-            color: var(--text-light);
-        }
-
-        .toast-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, #4ade80, #22c55e);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            animation: popIn 0.4s ease-out 0.1s both;
-        }
-
-        @keyframes popIn {
-            from { transform: scale(0); }
-            to { transform: scale(1); }
-        }
-
-        .toast-icon svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-
-        .toast h3 {
-            color: var(--accent);
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-        }
-
-        .toast p {
-            color: var(--text-light);
-            font-size: 1.05rem;
-            line-height: 1.5;
-        }
-
-        .overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(10, 22, 40, 0.8);
-            backdrop-filter: blur(4px);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        @media (max-width: 520px) {
-            .card {
-                padding: 28px;
-            }
-
-            .alias-box {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .alias-text {
-                font-size: 1.1rem;
+        @media (max-width: 480px) {
+            .alias {
+                font-size: 1.5rem;
+                padding: 20px 24px;
             }
 
             .copy-btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .toast {
-                width: calc(100% - 40px);
-                padding: 24px 20px;
-                max-width: none;
-            }
-
-            .toast h3 {
-                font-size: 1.2rem;
-            }
-
-            .toast p {
-                font-size: 0.95rem;
+                padding: 18px 36px;
+                font-size: 1.1rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="card">
-            <div class="header">
-                <div class="logo">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                    </svg>
-                </div>
-                <h1>Información de Pago</h1>
-                <p>Datos para transferencia</p>
-            </div>
-
-            <div class="info-group">
-                <span class="info-label">Nombre</span>
-                <div class="info-value">Mei Chin Lin</div>
-            </div>
-
-            <div class="alias-container">
-                <span class="info-label">Alias</span>
-                <div class="alias-box">
-                    <span class="alias-text" id="aliasText">livegreen.mp</span>
-                    <button class="copy-btn" onclick="copyAlias()">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-                        </svg>
-                        Copiar Alias
-                    </button>
-                </div>
-            </div>
-
-            <div class="footer">
-                <p>Utilice este alias para realizar su pago</p>
-                <div class="mercado-badge">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--primary)">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"/>
-                    </svg>
-                    <span>Mercado Pago</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="overlay" id="overlay" onclick="hideToast()"></div>
-    <div class="toast" id="toast">
-        <div class="toast-icon">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+        <div class="alias" id="aliasText">livegreen.mp</div>
+        <button class="copy-btn" id="copyBtn" onclick="copyAlias()">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
             </svg>
-        </div>
-        <h3>¡Copiado exitosamente!</h3>
-        <p>Por favor, pegue el alias<br>en Mercado Pago</p>
-        <button class="toast-close" onclick="hideToast()">Cerrar</button>
+            <span id="btnText">Copiar Alias</span>
+        </button>
     </div>
 
     <script>
         function copyAlias() {
             const alias = document.getElementById('aliasText').textContent;
+            const btn = document.getElementById('copyBtn');
+            const btnText = document.getElementById('btnText');
+            
             navigator.clipboard.writeText(alias).then(() => {
-                showToast();
+                showSuccess();
             }).catch(err => {
                 // Fallback for older browsers
                 const textArea = document.createElement('textarea');
@@ -455,20 +122,32 @@
                 textArea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textArea);
-                showToast();
+                showSuccess();
             });
         }
 
-        function showToast() {
-            document.getElementById('overlay').classList.add('show');
-            document.getElementById('toast').classList.add('show');
-        }
-
-        function hideToast() {
-            document.getElementById('overlay').classList.remove('show');
-            document.getElementById('toast').classList.remove('show');
+        function showSuccess() {
+            const btn = document.getElementById('copyBtn');
+            const btnText = document.getElementById('btnText');
+            
+            btn.classList.add('copied');
+            btn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                <span>¡Copiado!</span>
+            `;
+            
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                    </svg>
+                    <span>Copiar Alias</span>
+                `;
+            }, 2000);
         }
     </script>
 </body>
 </html>
-
